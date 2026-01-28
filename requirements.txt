@@ -3,7 +3,7 @@ opencv-python>=4.5.0
 numpy>=1.19.0
 
 # Jetson GPIO (Jetson Nano上でのみ動作)
-# Jetson.GPIO
+Jetson.GPIO
 
 # 顔検出
 # tensorrt (Jetson上でプリインストール)
