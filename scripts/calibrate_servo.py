@@ -27,6 +27,7 @@ def main() -> None:
     logger.info("  q         - 終了")
 
     with ServoController() as servo:
+        servo.warn_if_simulated()
         servo.center()
         logger.info("初期位置: Pan=90°, Tilt=90°")
 

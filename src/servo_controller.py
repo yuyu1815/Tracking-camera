@@ -63,6 +63,15 @@ class ServoController:
         self.initialized = True
         logger.info(f"サーボ初期化完了: Pan={self.pan_angle}°, Tilt={self.tilt_angle}°")
         return self
+    
+    def warn_if_simulated(self) -> None:
+        """シミュレーションモードの場合に警告を表示."""
+        if not JETSON_AVAILABLE:
+            print("\n" + "!" * 50)
+            print("【警告】シミュレーションモードで実行中")
+            print("Jetson.GPIOが検出されませんでした。")
+            print("実際のモーターは動作しません。ログ出力のみ行われます。")
+            print("!" * 50 + "\n")
 
     def _angle_to_duty(self, angle: float) -> float:
         """角度をデューティ比に変換.
@@ -91,6 +100,8 @@ class ServoController:
             self.pwm_pan.ChangeDutyCycle(self._angle_to_duty(self.pan_angle))
         else:
             logger.debug(f"[SIM] Pan: {self.pan_angle}°")
+            # 最初の1回だけ警告を出すなどの処理を入れても良いが、
+            # 現状はログ出力のみとする
 
     def set_tilt(self, angle: float) -> None:
         """チルト角度を設定.
