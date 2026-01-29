@@ -17,12 +17,6 @@ uv sync
 uv sync --extra dev
 ```
 
-### 従来のpip使用
-
-```bash
-pip install -r requirements.txt
-```
-
 ## 開発
 
 ```bash
